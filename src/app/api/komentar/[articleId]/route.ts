@@ -2,8 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../../lib/mongodb';
 
 export async function POST(req: NextRequest, 
-  context: { params: { id: string; type: string; articleId: string; isiKomentar:komentarTemplate } }) {
-  const { articleId } = context.params;
+  { params }: { params: Promise<{ articleId: string; isiKomentar:komentarTemplate }> }) {
+  const { articleId } = await params;
   const isiKomentar = await req.json();
   const db = await connectToDatabase();
   const collection = db.collection('user');
