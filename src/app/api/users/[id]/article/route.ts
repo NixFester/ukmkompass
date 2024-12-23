@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../../../lib/mongodb';
 
-export async function POST(req: NextRequest, { params }: { params: { id: string } }) {
-  const userId = await params.id;
+export async function POST(req: NextRequest, context : { params: { id: string } }) {
+  const userId =  context.params.id;
   const { id, title, body, komentar, like, dislike, image } = await req.json();
   const artikel = image
     ? {

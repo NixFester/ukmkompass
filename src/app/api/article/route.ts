@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../lib/mongodb';
 
 export async function POST(req: NextRequest) {
-  const { id, article }:{id:string,article:IArticle} = await req.json();
+  const body = await req.json()
+  const { id, article }: { id: string; article: IArticle } = body;
   if (!id) return NextResponse.json({ message: "User ID is required" }, { status: 400 });
   if (!article) return NextResponse.json({ message: "Article is required" }, { status: 400 });
   

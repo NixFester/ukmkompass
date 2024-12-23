@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../../lib/mongodb';
 
-export async function DELETE(req: NextRequest, { params }: { params: { idArtikel: string } }) {
-  const { idArtikel } = await params;
+export async function DELETE(req: NextRequest, context: { params: { idArtikel: string } }) {
+  const { idArtikel } = context.params;
   const db = await connectToDatabase();
   const collection = db.collection('user');
 

@@ -2,7 +2,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../lib/mongodb';
 
 export async function POST(req: NextRequest) {
-  const { id, description } = await req.json();
+  const body = await req.json();
+  const { id, description } = body
   const db = await connectToDatabase();
   const collection = db.collection('user');
 

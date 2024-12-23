@@ -1,8 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../../../lib/mongodb';
 
-export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
-  const { id } = await params;
+export async function GET(req: NextRequest, context: { params: { id: string } }) {
+  const { id } = context.params;
   const db = await connectToDatabase();
   const collection = db.collection('user');
 
