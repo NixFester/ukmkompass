@@ -1,9 +1,8 @@
 import * as React from "react";
 import Link from "next/link";
 
-export interface IBotNavProps {}
 
-export default class BotNav extends React.Component<IBotNavProps> {
+export default class BotNav extends React.Component {
   public render() {
     return (
       <div className="w-full lg:hidden xl:hidden">

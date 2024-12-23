@@ -2,9 +2,8 @@
 import * as React from "react";
 import MainLayout from "../component/layout/MainLayout";
 
-export interface IAppProps {}
 
-export default class SastraRoute extends React.Component<IAppProps> {
+export default class SastraRoute extends React.Component {
   public render() {
     return (
       <div>

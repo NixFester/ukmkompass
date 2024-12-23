@@ -2,9 +2,8 @@
 import * as React from "react";
 import Link from "next/link";
 
-export interface IAppProps {}
 
-export default class Judul extends React.Component<IAppProps> {
+export default class Judul extends React.Component {
   public render() {
     return (
       <Link href="/" className="flex items-center mb-2">

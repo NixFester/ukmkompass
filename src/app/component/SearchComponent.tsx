@@ -3,9 +3,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "flowbite-react";
 
-interface ISearchBoxProps {}
 
-const SearchBox: React.FC<ISearchBoxProps> = (props) => {
+const SearchBox: React.FC = () => {
   const route = useRouter();
   const [input, setInput] = useState("");
 

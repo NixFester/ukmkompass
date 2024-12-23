@@ -3,9 +3,8 @@ import React from "react";
 import MainLayout from "../component/layout/MainLayout";
 import { useSearchParams } from "next/navigation";
 
-export interface ISearchProps {}
 
-export default function SearchResultPage(props: ISearchProps) {
+export default function SearchResultPage() {
   const searchParams = useSearchParams();
   const paramValue = searchParams.get('q');
   

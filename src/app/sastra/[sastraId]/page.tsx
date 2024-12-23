@@ -6,9 +6,8 @@ import IsiArtikel from "../../component/IsiArtikel";
 import { ArticleContext } from "../../context/ArticleContext";
 import { useRouter,useParams } from 'next/navigation';
 
-export interface ISastraProps {}
 
-export default function Sastra(props: ISastraProps) {
+export default function Sastra() {
    const router = useRouter();
     const {sastraId} = useParams()
      const id = Array.isArray(sastraId)

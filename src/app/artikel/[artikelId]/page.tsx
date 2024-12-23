@@ -6,9 +6,8 @@ import { useRouter,useParams } from 'next/navigation';
 import IsiArtikel from "../../component/IsiArtikel";
 import { ArticleContext } from "../../context/ArticleContext";
 
-export interface IArtikelProps {}
 
-export default function Artikel(props: IArtikelProps) {
+export default function Artikel() {
   const router = useRouter();
   const {artikelId} = useParams()
   const id = Array.isArray(artikelId)

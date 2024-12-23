@@ -6,7 +6,6 @@ import { Modal, Button } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 
-export interface IDashboardLayoutProps {}
 
 
 export default function DashboardLayout({

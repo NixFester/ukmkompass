@@ -1,9 +1,8 @@
 import * as React from "react";
 import { AuthContext } from "../context/AuthContext";
 
-export interface IUserAvatarProps {}
 
-export function UserAvatar(props: IUserAvatarProps) {
+export function UserAvatar() {
   const authContext = React.useContext(AuthContext);
   if (!authContext) {
     throw new Error("Profile must be used within AuthProvider");

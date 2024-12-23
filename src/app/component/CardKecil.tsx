@@ -1,9 +1,8 @@
 import React, { useContext } from "react";
 import { ArticleContext } from "../context/ArticleContext";
 
-export interface ICardKecilProps {}
 
-export default function CardKecil(props: ICardKecilProps) {
+export default function CardKecil() {
   const articleContext = useContext(ArticleContext);
   if (!articleContext) {
     throw new Error("Article must be used within AuthProvider");

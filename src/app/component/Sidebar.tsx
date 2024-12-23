@@ -1,8 +1,7 @@
 import * as React from "react";
 
-export interface ISideBarProps {}
 
-export function SideBar(props: ISideBarProps) {
+export function SideBar() {
   return (
     <div>
       <div className="relative flex flex-col bg-clip-border rounded-xl bg-white text-gray-700 h-[calc(100vh-2rem)] w-full max-w-[20rem] p-4 shadow-xl shadow-blue-gray-900/5">

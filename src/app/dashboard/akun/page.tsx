@@ -4,9 +4,8 @@ import { AuthContext } from "../../context/AuthContext";
 import { Button } from "flowbite-react";
 import { saveDesc, saveName } from "../../api/userApi";
 
-export interface IAkunLayoutProps {}
 
-export default function AkunLayout(props: IAkunLayoutProps) {
+export default function AkunLayout() {
   const authContext = React.useContext(AuthContext);
   if (!authContext) {
     throw new Error("Auth must be used within AuthProvider");

@@ -2,9 +2,8 @@ import * as React from "react";
 import { IoLogoWhatsapp, IoLogoYoutube } from "react-icons/io";
 import { FaInstagram } from "react-icons/fa6";
 
-export interface IAppProps {}
 
-export default class App extends React.Component<IAppProps> {
+export default class App extends React.Component {
   public render() {
     return (
       <div className="flex items-end w-full bg-white mt-5 ">

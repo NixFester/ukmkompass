@@ -5,9 +5,8 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import { Button } from "flowbite-react";
-export interface IAuthProps {}
 
-const Auth: React.FC<IAuthProps> = () => {
+const Auth: React.FC = () => {
     const router = useRouter();
   const authContext = useContext(AuthContext);
   if (!authContext) {

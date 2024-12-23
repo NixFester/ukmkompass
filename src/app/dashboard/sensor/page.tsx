@@ -7,9 +7,8 @@ import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 
-export interface IPenangananSensorProps {}
 
-export default function PenangananSensor(props: IPenangananSensorProps) {
+export default function PenangananSensor() {
     const router = useRouter();
     const ReactQuill = React.useMemo(() => dynamic(() => import('react-quill-new'), { ssr: false }),[]);
 
