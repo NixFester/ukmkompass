@@ -4,7 +4,6 @@ import React, {
   useState,
   useEffect,
   ReactNode,
-  useContext,
 } from "react";
 import { modifyUser, fetchUserById } from "../api/userApi";
 

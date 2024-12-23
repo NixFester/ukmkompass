@@ -7,7 +7,6 @@ import { AuthContext } from "../context/AuthContext";
 import Komentar from "./Komentar";
 import KomentarAvatar from "./KomentarAvatar";
 import "react-quill-new/dist/quill.snow.css";
-import Image from "next/image";
 import dynamic from "next/dynamic";
 
 export interface IIsiArtikelProps {
@@ -24,10 +23,10 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
   const { profile } = authContext;
   const targetArticle = props.isi;
   
+  const ReactQuill = useMemo(() => dynamic(() => import('react-quill-new'), { ssr: false }),[]);
   if (!props.id) {
     return <div>invalid</div>
   }
-  const ReactQuill = useMemo(() => dynamic(() => import('react-quill-new'), { ssr: false }),[]);
 
 
   return (

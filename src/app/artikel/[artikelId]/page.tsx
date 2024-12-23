@@ -5,7 +5,6 @@ import Kaki from "../../component/Kaki";
 import { useRouter,useParams } from 'next/navigation';
 import IsiArtikel from "../../component/IsiArtikel";
 import { ArticleContext } from "../../context/ArticleContext";
-import { Button } from "flowbite-react";
 
 export interface IArtikelProps {}
 

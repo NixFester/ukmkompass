@@ -1,4 +1,5 @@
 import * as React from "react";
+import Link from "next/link";
 
 export interface IBotNavProps {}
 
@@ -12,7 +13,7 @@ export default class BotNav extends React.Component<IBotNavProps> {
           className="block fixed inset-x-0 bottom-0 z-10 bg-white shadow"
         >
           <div id="tabs" className="flex justify-between">
-            <a
+            <Link
               href="/"
               className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"
             >
@@ -60,7 +61,7 @@ export default class BotNav extends React.Component<IBotNavProps> {
                 </g>
               </svg>
               <span className="tab tab-home block text-xs">Beranda</span>
-            </a>
+            </Link>
             <a
               href="#"
               className="w-full focus:text-teal-500 hover:text-teal-500 justify-center inline-block text-center pt-2 pb-1"

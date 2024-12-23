@@ -1,7 +1,7 @@
 import * as React from "react";
 
 interface IListMenuProps {
-  teks: String;
+  teks: string;
   href: string;
   type: boolean;
 }

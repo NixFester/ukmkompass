@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { v2 as cloudinary } from 'cloudinary';
 import multer from 'multer';
-import { Readable } from 'stream';
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,

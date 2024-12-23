@@ -90,7 +90,7 @@ export default function AkunLayout(props: IAkunLayoutProps) {
                               onClick={() => {
                                 setEditNama((prev) => !prev);
                                 saveName(profile.id, username)
-                                  .then((message) => {
+                                  .then(() => {
                                     alert("Username Diganti!");
                                     setProfileState((prev) => {
                                       if (prev) {
@@ -154,7 +154,7 @@ export default function AkunLayout(props: IAkunLayoutProps) {
                               onClick={() => {
                                 setEdit((prev) => !prev);
                                 saveDesc(profile.id, deskripsi)
-                                  .then((message) => {
+                                  .then(() => {
                                     alert("Deskripsi Diganti!");
                                     setProfileState((prev) => {
                                       if (prev) {

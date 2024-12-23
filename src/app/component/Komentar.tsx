@@ -1,7 +1,7 @@
 'use client'
 import React, { useContext, useState } from "react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
-import { Label, Textarea, Avatar, Button, Modal } from "flowbite-react";
+import { Label, Textarea, Button, Modal } from "flowbite-react";
 import { handleComment } from "../api/userApi";
 import { ArticleContext } from "../context/ArticleContext";
 import { v4 as uuidv4 } from "uuid";

@@ -6,7 +6,6 @@ import BotNav from "../BotNav";
 import { UserAvatar } from "../UserAvatat";
 import ListArtikel from "../ListArtikel";
 import SearchBox from "../SearchComponent";
-import Image from "next/image";
 
 export interface IMainLayoutProps {
   Kategori: 1 | 2 | 3 | 4;
