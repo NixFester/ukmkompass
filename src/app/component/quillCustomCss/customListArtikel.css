@@ -1,0 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.ql-bubble {
+  @apply block mb-8 font-sans text-base antialiased font-normal leading-relaxed text-gray-700 !important;
+}

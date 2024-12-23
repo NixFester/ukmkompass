@@ -2,20 +2,31 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer utilities {
+  @keyframes scan {
+    0% {
+      background-position: 0 -100vh;
+    }
+    35%,
+    100% {
+      background-position: 0 100vh;
+    }
+  }
+  .animate-scan {
+    animation: scan 7.5s linear infinite;
   }
 }
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+.ql-bubble {
+  max-width: fit-content;
+}
+
+.ql-bubble {
+  @apply text-justify;
+  @apply text-xl !important;
+  @apply lg:text-2xl !important;
+  margin-bottom: 1.4rem !important;
+  white-space: normal !important; /* Force text wrapping */
+  word-wrap: break-word !important; /* Ensure long words break */
+  overflow-x: hidden !important; /* Prevent horizontal scrolling */
 }

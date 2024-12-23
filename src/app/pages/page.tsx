@@ -1,6 +1,5 @@
-'use client'
 import * as React from "react";
-import MainLayout from "./component/layout/MainLayout";
+import MainLayout from "../component/layout/MainLayout";
 
 export interface IAppProps {}
 
