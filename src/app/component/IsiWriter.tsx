@@ -176,7 +176,7 @@ export default function IsiWriter(props: IIsiWriterProps) {
         ));
 
   return (
-    <div className="lg:py-4 lg:pl-10 p-2 pt-14">
+    <div className="lg:py-4 lg:pl-10 p-2 pt-14 overflow-hidden lg:overflow-auto">
       <div className="mb-6 text-xl font-semibold">
         <h2 className="">PENULISAN {props.bentuk.toUpperCase()}</h2>
         <h2>Gambar:</h2>
