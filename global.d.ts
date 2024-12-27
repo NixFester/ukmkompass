@@ -67,4 +67,17 @@ interface KATEGORIENUM {
     sastra?: ISastra[];
     interaksi?: interaksi[];
   }
+  interface ArticleContext {
+    articles: IArticle[];
+    setArticlesState: React.Dispatch<React.SetStateAction<IArticle[]>>;
+    sastra: ISastra[];
+    setSastraState: React.Dispatch<React.SetStateAction<ISastra[]>>;
+    isiBlog: IIsiBlog[];
+    belumLulusSensor: IIsiBlog[];
+  }
+  
+  interface IIsiBlog extends ISastra {
+    lolosSensor?: boolean;
+    sastra: boolean;
+  }
   

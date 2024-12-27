@@ -30,14 +30,14 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
 
 
   return (
-    <div className=" w-full p-16 flex justify-center flex-col">
+    <div className=" w-full lg:p-16 p-2 flex justify-center flex-col">
       <Line />
       {<img src={targetArticle?.image} alt="" className=" mt-10" />}
       <h1 className=" lg:text-8xl text-5xl font-bold my-8">
         {targetArticle?.title}
       </h1>
       <Line />
-      <div className=" flex flex-col px-4 mt-10 ">
+      <div className=" flex flex-col lg:px-4 mt-10 ">
         <div className=" ">
           <ReactQuill
             readOnly={true}

@@ -23,7 +23,7 @@ export default function MainLayout(props: IMainLayoutProps) {
           ? "pojokSastra"
           : "sesuatu";
   return (
-    <div>
+    <div className="mb-20">
       <div className=" flex justify-center">
         <div className=" w-11/12 mx-2">
           <Header type={tipe} />

@@ -17,7 +17,7 @@ export default class Card extends React.Component<IAppProps> {
         <a href={this.props.href}>
           <div className="my-10 mx-auto hover:border-slate-300 hover:shadow-md  transition-all cursor-pointer">
             {/* Centering wrapper */}
-            <div className="flex bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full flex-row h-fit">
+            <div className="flex bg-clip-border rounded-xl bg-white text-gray-700 shadow-md w-full lg:flex-row flex-col h-fit">
               <Gambar url={this.props.urlGambar ? this.props.urlGambar : ""} />
               <div className="p-6">
                 <h6 className="block mb-4 font-sans text-base antialiased font-semibold leading-relaxed tracking-normal text-gray-700 uppercase">

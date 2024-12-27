@@ -176,9 +176,9 @@ export default function IsiWriter(props: IIsiWriterProps) {
         ));
 
   return (
-    <div className="py-4 pl-10">
+    <div className="lg:py-4 lg:pl-10 p-2 pt-14">
       <div className="mb-6 text-xl font-semibold">
-        <h2 className="">{props.bentuk.toUpperCase()}</h2>
+        <h2 className="">PENULISAN {props.bentuk.toUpperCase()}</h2>
         <h2>Gambar:</h2>
         {!props.imageUrl && <ImageUploader
           handleSelectFile={props.handleSelectFile}

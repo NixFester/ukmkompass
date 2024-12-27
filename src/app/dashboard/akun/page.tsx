@@ -39,10 +39,10 @@ export default function AkunLayout() {
           <div className="absolute inset-0 bg-gradient-to-r from-blue-300 to-blue-600 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
           <div className="relative px-2 py-2 bg-white shadow-lg sm:rounded-3xl sm:p-20">
             <div className=" mx-auto">
-              <div>
+              <div className="flex flex-col items-center">
                 <h1 className="text-2xl font-semibold">
                   {profile
-                    ? `Welcome, ${profile.name}`
+                    ? `Selamat Datang, ${profile.name}`
                     : "Login with Google or Email"}
                 </h1>
               </div>
@@ -50,7 +50,7 @@ export default function AkunLayout() {
                 <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                   {/* Profile Information */}
                   {profile && (
-                    <div className="text-center mt-4">
+                    <div className="text-center lg:mt-4">
                       <img
                         className="w-24 h-24 rounded-full mx-auto"
                         src={profile.profpic}
@@ -83,9 +83,9 @@ export default function AkunLayout() {
                               setUserName(e.target.value);
                             }}
                           ></textarea>
-                          <div className="flex gap-2 my-2">
+                          <div className="flex mt-2 gap-2 lg:my-2 justify-center ">
                             <Button
-                              className=" justify-self-end"
+                              className=" lg:justify-self-end"
                               onClick={() => {
                                 setEditNama((prev) => !prev);
                                 saveName(profile.id, username)
@@ -108,10 +108,10 @@ export default function AkunLayout() {
                               }}
                             >
                               {" "}
-                              Ganti Deskripsi
+                              Ganti Username
                             </Button>
                             <Button
-                              className=" justify-self-end"
+                              className=" lg:justify-self-end"
                               onClick={() => {
                                 setEditNama((prev) => !prev);
                                 setUserName(deskBackup);
@@ -147,9 +147,9 @@ export default function AkunLayout() {
                           >
                             {deskripsi}
                           </textarea>
-                          <div className="flex gap-2 my-2">
+                          <div className="flex gap-2 lg:my-2 justify-center">
                             <Button
-                              className=" justify-self-end"
+                              className=" lg:justify-self-end"
                               onClick={() => {
                                 setEdit((prev) => !prev);
                                 saveDesc(profile.id, deskripsi)
@@ -175,7 +175,7 @@ export default function AkunLayout() {
                               Ganti Deskripsi
                             </Button>
                             <Button
-                              className=" justify-self-end"
+                              className=" lg:justify-self-end"
                               onClick={() => {
                                 setEdit((prev) => !prev);
                                 setDeskripsi(deskBackup);

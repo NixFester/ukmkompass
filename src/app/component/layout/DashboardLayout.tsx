@@ -5,8 +5,11 @@ import { AuthContext } from "../../context/AuthContext";
 import { Modal, Button } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useRouter } from "next/navigation";
-
-
+import { FaEdit, FaHome,FaPenFancy } from "react-icons/fa";
+import { RxHamburgerMenu } from "react-icons/rx";
+import { MdAccountCircle } from "react-icons/md";
+import { CiLogout } from "react-icons/ci";
+import { IoNewspaperOutline } from "react-icons/io5";
 
 export default function DashboardLayout({
     children,
@@ -27,9 +30,10 @@ export default function DashboardLayout({
   const renderingChoice = profile ? (
     profile.id === "111115487387317431655" ? (
       <Sidebar.ItemGroup>
-        <Sidebar.Item href="/dashboard/sensor">Penanganan Sensor</Sidebar.Item>
-        <Sidebar.Item href="/">Beranda</Sidebar.Item>
-        <Sidebar.Item
+            <Sidebar.Item icon={RxHamburgerMenu} onClick={() => setSidebar(!bukaSidebar)}>Dashboard </Sidebar.Item>
+        <Sidebar.Item icon={FaEdit} href="/dashboard/sensor">Penanganan Sensor</Sidebar.Item>
+        <Sidebar.Item icon={FaHome} href="/">Beranda</Sidebar.Item>
+        <Sidebar.Item  icon={CiLogout}
           className="cursor-pointer"
           onClick={() => {
             setOpenModal(true);
@@ -41,11 +45,13 @@ export default function DashboardLayout({
       </Sidebar.ItemGroup>
     ) : (
       <Sidebar.ItemGroup>
-        <Sidebar.Item href="/dashboard/akun">Akun</Sidebar.Item>
-        <Sidebar.Item href="/dashboard/penulisan">Berita</Sidebar.Item>
-        <Sidebar.Item href="/dashboard/sastra">Sastra</Sidebar.Item>
-        <Sidebar.Item href="/">Beranda</Sidebar.Item>
-        <Sidebar.Item
+            <Sidebar.Item icon={RxHamburgerMenu} onClick={() => setSidebar(!bukaSidebar)} className="cursor-pointer">Tutup Sidebar </Sidebar.Item>
+
+        <Sidebar.Item icon={MdAccountCircle} href="/dashboard/akun">Akun</Sidebar.Item>
+        <Sidebar.Item icon={IoNewspaperOutline} href="/dashboard/penulisan">Berita</Sidebar.Item>
+        <Sidebar.Item icon={FaPenFancy} href="/dashboard/sastra">Sastra</Sidebar.Item>
+        <Sidebar.Item icon={FaHome} href="/">Beranda</Sidebar.Item>
+        <Sidebar.Item icon={CiLogout}
           className="cursor-pointer"
           onClick={() => {
             setOpenModal(true);
@@ -64,18 +70,19 @@ export default function DashboardLayout({
 
   return (
     <div className=" flex flex-row transition-all bg-gray-50 ">
-      {bukaSidebar && <div className=" w-[8%] transition-all fixed top-0 left-0 pt-14">
-        <Sidebar className="w-[120%]">
-          <Sidebar.Items>{renderingChoice}</Sidebar.Items>
+      {bukaSidebar && <div className=" lg:w-[8%] w-[40%] z-50 h-screen  transition-all fixed top-0 left-0 ">
+        <Sidebar className="">
+          <Sidebar.Items>
+            {renderingChoice}
+          </Sidebar.Items>
         </Sidebar>
       </div>}
-      {bukaSidebar && <div className=" w-[8%]"/>}
-      <div className="fixed top-4 left-0">
-          <Button onClick={() => setSidebar(!bukaSidebar)}>
+      <div className={`${!bukaSidebar?"fixed":"hidden"} top-4 left-0 z-50`}>
+          <Button color="gray" onClick={() => setSidebar(!bukaSidebar)}>
             {bukaSidebar ? 'Tutup Sidebar' : 'Buka Sidebar'}
           </Button>
       </div>
-      <div className={!bukaSidebar?" w-full pt-12":"w-11/12"}>
+      <div className={!bukaSidebar?" w-full lg:pt-12":"w-full lg:pl-[13%]"} >
         <main>{children}</main>
       </div>
       <Modal
