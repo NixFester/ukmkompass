@@ -1,3 +1,4 @@
+'use client'
 import Header from "../Header";
 import Line from "../Line";
 import CardKecil from "../CardKecil";
@@ -30,14 +31,24 @@ export default function MainLayout(props: IMainLayoutProps) {
           <img src={'/KomPaSSPancasaktiHD.png'} alt="tulisan" className=" w-full my-2"  width={0} height={0}/>
           <Line />
           <div className=" flex lg:flex-row flex-col">
-            <ListArtikel Kategori={props.Kategori} searchQuery={props.query} />
-            <div className=" lg:w-2/12 ml-10">
-              <UserAvatar />
+            <div className=" block lg:hidden">
               <p className="  mt-2 text-slate-800 text-4xl font-semibold mb-3">
                 Cari {props.Kategori === 1 || props.Kategori === 2 ? "Artikel" : props.Kategori === 3 ? "Sastra" : "Sesuatu"}
               </p>
               <Line kelas=" h-2 sm:w-[200px]" />
               <SearchBox />
+            </div>
+            <ListArtikel Kategori={props.Kategori} searchQuery={props.query} />
+            <div className=" lg:w-2/12 ml-10">
+              <UserAvatar />
+              
+              <div className="hidden lg:block">
+                <p className="  mt-2 text-slate-800 text-4xl font-semibold mb-3">
+                  Cari {props.Kategori === 1 || props.Kategori === 2 ? "Artikel" : props.Kategori === 3 ? "Sastra" : "Sesuatu"}
+                </p>
+                <Line kelas=" h-2 sm:w-[200px]" />
+                <SearchBox />
+              </div>
               <p className="  mt-2 text-slate-800 text-4xl font-semibold mb-3">
                 Terbaru
               </p>

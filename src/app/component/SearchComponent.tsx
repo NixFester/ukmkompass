@@ -16,7 +16,7 @@ const SearchBox: React.FC = () => {
     <div className="search-box mb-4 flex mt-3">
       <input
         type="text"
-        placeholder="Search articles..."
+        placeholder="Cari..."
         value={input}
         onChange={(e) => setInput(e.target.value)}
         className="border p-2 rounded w-full"
