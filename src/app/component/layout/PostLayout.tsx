@@ -4,6 +4,7 @@ import { fetchUserById, handleArtikel, handleSastra } from "../../api/userApi";
 import { AuthContext } from "../../context/AuthContext";
 import axios, { AxiosResponse } from "axios";
 import IsiWriter from "../../component/IsiWriter";
+import { useRouter } from "next/navigation";
 
 interface IWriter {
     bentuk:string
@@ -22,6 +23,8 @@ function ArtikelWriter(props: IWriter) {
   const [imageUrl,setImageUrl] = useState<string|null>(null)
   const [komentar,setKomentar] = useState<komentarTemplate[]|null>(null)
   const [editArticleBody,setEditArticleBody] = useState<string>("")
+
+  const router = useRouter();
   
   if (!authContext) {
     throw new Error("Profile must be used within AuthProvider");
@@ -53,17 +56,19 @@ function ArtikelWriter(props: IWriter) {
       if (!imageUrl) {
         return alert("Tolong upload gambar");
       }
-    } else if (file) {
+    } else if (file && (file.size /1024) < 2048) {
       const data = new FormData();
       data.append("my_file", file);
 
       response = await axios.post(
-        "api/upload",
+        "/api/upload",
         data,
         {
           headers: { "Content-Type": "multipart/form-data" },
         }
       );
+    } else if(bentuk === 'artikel' && file && (file.size /1024) > 2048) {
+      return alert("File terlalu besar, maksimal 2MB atau file tidak ada");
     }
     if (!title.trim() || !body.trim()) {
       return alert("tolong isi sama titlenya yang bener.");
@@ -78,7 +83,7 @@ function ArtikelWriter(props: IWriter) {
       const newArticle: IArticle = {
         id: idArtikel || Date.now().toString(), // Example unique ID, replace with backend logic
         title: title.trim(),
-        body: editArticleBody || body.trim(),
+        body: body.trim() || editArticleBody,
         image: imageUrl || imageURI,
         komentar: komentar || [],
         like: 0,
@@ -91,14 +96,12 @@ function ArtikelWriter(props: IWriter) {
         } 
         await handleArtikel(user.id, newArticle).then(() => {
 
-            alert("Article saved successfully!");
           setArticles([...articles, newArticle]);
           setTitle("");
           setBody("");
         });
       } else {
         await handleSastra(user.id, newArticle).then(() => {
-          alert("Article saved successfully!");
           setArticles([...articles, newArticle]);
           setTitle("");
           setBody("");
@@ -106,6 +109,8 @@ function ArtikelWriter(props: IWriter) {
       }
       setLoading(false);
       alert("Artikel telah disimpan");
+      router.push("/dashboard/akun");
+
     } catch (error: any) {
       alert(error.message || "Something went wrong!");
     }

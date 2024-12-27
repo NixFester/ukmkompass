@@ -70,8 +70,8 @@ export default function IsiWriter(props: IIsiWriterProps) {
                   >
                     {editArticle?"Edit Artikel": props.loading? "Loading":"Selesai Edit"}
                   </Button>
-                  <Button onClick={() => setOpenModal(true)}>
-                    Tidak Lulus Sensor
+                  <Button color="failure" onClick={() => setOpenModal(true)}>
+                    Hapus Postingan
                   </Button>
                 </div>
                 <Modal

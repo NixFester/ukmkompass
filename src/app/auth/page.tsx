@@ -13,6 +13,7 @@ const Auth: React.FC = () => {
     throw new Error("Auth must be used within AuthProvider");
   }
   const { profile, setProfile, logOut } = authContext;
+  const [loading, setLoading] = React.useState(false);
 
   const login = useGoogleLogin({
     onSuccess: async (codeResponse) => {
@@ -34,6 +35,7 @@ const Auth: React.FC = () => {
         };
         setProfile(profileData);
       } catch (error) {
+        setLoading(false);
         console.error("Failed to fetch user data:", error);
       }
     },
@@ -70,7 +72,11 @@ const Auth: React.FC = () => {
                 {!profile ? (
                   <div className="relative">
                     <Button
-                      onClick={() => login()}
+                      onClick={() => {
+                        setLoading(true)
+                        login()
+                      }}
+                      disabled={loading}
                       className="bg-red-500 text-white rounded-md px-4 py-2 w-full flex items-center justify-center"
                     >
                       <svg
@@ -81,7 +87,7 @@ const Auth: React.FC = () => {
                       >
                         <path d="M12 11.8v4.5h6.6c-.3 1.8-1.9 5.3-6.6 5.3-4 0-7.4-3.3-7.4-7.4s3.3-7.4 7.4-7.4c2.3 0 3.8 1 4.7 1.9l3.4-3.3c-2.3-2-5.3-3.1-8.1-3.1-7.5 0-12 6-12 12s6 12 12 12c6.9 0 11.4-4.9 11.4-11.4 0-.8-.1-1.5-.2-2.2H12z" />
                       </svg>
-                      Google
+                      {loading ? "Loading..." : "Login with Google"}
                     </Button>
                   </div>
                 ) : (
