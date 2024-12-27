@@ -93,7 +93,7 @@ const Auth: React.FC = () => {
                       Logout
                     </Button>
                     <Button
-                      onClick={() => router.back()}
+                      onClick={() => router.push('/')}
                       className="bg-cyan-400 text-white rounded-md px-4 py-2 w-full flex items-center justify-center"
                     >
                       Kembali
