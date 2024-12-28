@@ -24,7 +24,7 @@ export default function MainLayout(props: IMainLayoutProps) {
           ? "pojokSastra"
           : "sesuatu";
   return (
-    <div className="mb-20">
+    <div className="">
       <div className=" flex justify-center">
         <div className=" w-11/12 mx-2">
           <Header type={tipe} />
@@ -39,7 +39,7 @@ export default function MainLayout(props: IMainLayoutProps) {
               <SearchBox />
             </div>
             <ListArtikel Kategori={props.Kategori} searchQuery={props.query} />
-            <div className=" lg:w-2/12 ml-10">
+            <div className=" lg:w-[29%] lg:ml-10">
               <UserAvatar />
               
               <div className="hidden lg:block">

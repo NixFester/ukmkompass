@@ -56,22 +56,40 @@ export default function ListArtikel({
             Hasil Pencarian Untuk {searchQuery}
           </p>
         </div>
-      )}
-      {paginatedArticles.map((article) => (
-        <Card
-          sastra={article.sastra}
-          key={article.id}
-          urlGambar={article.image}
-          title={article.title}
-          body={
-            article.body
-              ? article.body.replace(/<\/?[^>]+(>|$)/g, "").slice(0, 200) +
-                "..."
-              : ""
-          }
-          href={(article.sastra ? "/sastra/" : "/artikel/") + article.id}
-        />
-      ))}
+        )}
+        {itemsPerPage === 5 && filteredArticles.length === 0 && (
+          <Card 
+          key="mypost"
+          sastra={false}
+          urlGambar="/KomPaSSPancasaktiHD.png"
+          title="Tata Cara Menggunakan Website ini"
+          body="Website ini dirancang agar mudah digunakan di komputer/laptop maupun ponsel. Meskipun tata letak halaman utama berbeda, fitur login..."
+          href="/guide"
+        />)}
+        {currentPage === 1 && (
+          <Card 
+            key="mypost"
+            sastra={false}
+            urlGambar="/KomPaSSPancasaktiHD.png"
+            title="Tata Cara Menggunakan Website ini"
+            body="Website ini dirancang agar mudah digunakan di komputer/laptop maupun ponsel. Meskipun tata letak halaman utama berbeda, fitur login..."
+            href="/guide"
+          />
+        )}
+        {paginatedArticles.map((article) => (
+          <Card
+            sastra={article.sastra}
+            key={article.id}
+            urlGambar={article.image}
+            title={article.title}
+            body={
+          article.body
+            ? article.body.replace(/<\/?[^>]+(>|$)/g, "").slice(0, 200) + "..."
+            : ""
+            }
+            href={(article.sastra ? "/sastra/" : "/artikel/") + article.id}
+          />
+        ))}
       <div className="flex overflow-x-auto sm:justify-center">
         {filteredArticles.length > itemsPerPage && ( // Render pagination only if there are more articles than itemsPerPage
           <div className="flex overflow-x-auto sm:justify-center">

@@ -13,7 +13,7 @@ export function UserAvatar() {
       <div
         className={
           profile
-            ? " w-[540px] mx-auto bg-white p-8 mt-10 lg:flex flex-row shadow-sm border border-slate-200 hover:border-slate-300 hover:shadow-md rounded-lg transition-all cursor-pointer hidden"
+            ? " w-fit mx-auto bg-white p-8 mt-10 lg:flex flex-row shadow-sm border border-slate-200 hover:border-slate-300 hover:shadow-md rounded-lg transition-all cursor-pointer hidden"
             : "hidden"
         }
       >
@@ -24,7 +24,7 @@ export function UserAvatar() {
             className="absolute w-32 h-32 text-gray-400 "
           />
         </div>
-        <div className="ml-5 text-4xl">
+        <div className="ml-5 text-3xl flex justify-center flex-col">
           <p>Selamat Datang!</p>
           <p>{profile?.name}!</p>
         </div>

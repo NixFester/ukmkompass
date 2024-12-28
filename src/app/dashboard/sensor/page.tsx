@@ -47,7 +47,7 @@ export default function PenangananSensor() {
                 onClick={() => {
                   console.log(article.id);
                   updateLolosSensor(article.id);
-                  router.refresh()}}
+                  router.push('/')}}
               >
                 Lulus Sensor
               </Button>

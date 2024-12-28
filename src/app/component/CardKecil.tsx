@@ -13,7 +13,7 @@ export default function CardKecil() {
     <div>
       {/* component */}
       {/* component */}
-      <div className=" xl:ml-2 xl:w-[530px] lg:ml-2 lg:w-[530px]">
+      <div className=" lg:ml-2 lg:w-fit">
         {isiBlog &&
           isiBlog.slice(0, 3).map((artikel) => (
             <div key={artikel.id} className="relative flex flex-col mt-6 bg-white shadow-sm border border-slate-200 hover:border-slate-300 hover:shadow-md rounded-lg transition-all cursor-pointer">
