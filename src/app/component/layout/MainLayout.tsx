@@ -57,10 +57,7 @@ export default function MainLayout(props: IMainLayoutProps) {
                 Terbaru
               </p>
               <Line kelas=" h-2 sm:w-[200px]" />
-              <CardKecil
-              isiBlog={props.isiBlog && props.isiBlog.filter(
-                (item: ISastra | IArticle) => item.lolosSensor
-              ) }  />
+              
             </div>
           </div>
         </div>

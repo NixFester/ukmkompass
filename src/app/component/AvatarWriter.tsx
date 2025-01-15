@@ -28,7 +28,7 @@ export function AvatarWriter(props: IAvatarWriterProps) {
     } else {
       getUserBasedOnArticle(props.id).then((data) => setUser(data));
     }
-  }, [props.id]);
+  }, [props.id,props.sastra]);
   return (
     <div
       className={

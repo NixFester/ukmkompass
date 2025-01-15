@@ -1,7 +1,5 @@
 import BlogPostLayout from "@/app/component/layout/BlogPostLayout";
 
-export const revalidate = Number(process.env.REVTIME)
-
 const fetchIsiBlog = async (id:string): Promise<any> => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/isiblog/${id}`);
   const data:IIsiBlog = await res.json();
