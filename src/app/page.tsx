@@ -1,9 +1,8 @@
 import MainLayout from "./component/layout/MainLayout";
+export const revalidate = 300
 
 const fetchIsiBlog = async (): Promise<any> => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/isiblog`, {
-    next: { revalidate: Number(process.env.REVTIME) }, // Revalidate every 60 seconds
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/isiblog`);
   if (!res.ok) {
     throw new Error("Failed to fetch articles");
   }
