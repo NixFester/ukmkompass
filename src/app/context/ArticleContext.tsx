@@ -21,7 +21,6 @@ export const ArticleProvider = ({ children }: { children: ReactNode }) => {
       return data.sort((a, b) => Number(b.id) - Number(a.id));
     };
     fetchIsiBlog().then((data) => {
-      console.log(data)
       const lulusSensor = data.filter(
         (item: ISastra | IArticle) => item.lolosSensor
       );

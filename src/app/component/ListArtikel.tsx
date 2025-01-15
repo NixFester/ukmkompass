@@ -1,23 +1,20 @@
 'use client'
-import React, { useContext, useState } from "react";
-import { ArticleContext } from "../context/ArticleContext";
+import { useState } from "react";
 import Card from "./Card";
 import { Pagination } from "flowbite-react";
 
 export interface IListArtikelProps {
   Kategori: 1 | 2 | 3 | 4;
   searchQuery?: string; // Add searchQuery prop
+  isiBlog?: IIsiBlog[]
 }
 
 export default function ListArtikel({
   Kategori,
   searchQuery,
+  isiBlog
 }: IListArtikelProps) {
-  const articleContext = useContext(ArticleContext);
-  if (!articleContext) {
-    throw new Error("Article must be used within AuthProvider");
-  }
-  const { isiBlog } = articleContext;
+
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
@@ -57,16 +54,7 @@ export default function ListArtikel({
           </p>
         </div>
         )}
-        {itemsPerPage === 5 && filteredArticles.length === 0 && (
-          <Card 
-          key="mypost"
-          sastra={false}
-          urlGambar="/KomPaSSPancasaktiHD.png"
-          title="Tata Cara Menggunakan Website ini"
-          body="Website ini dirancang agar mudah digunakan di komputer/laptop maupun ponsel. Meskipun tata letak halaman utama berbeda, fitur login..."
-          href="/guide"
-        />)}
-        {currentPage === 1 && (
+        {currentPage === 1 && Kategori !== 4 && (
           <Card 
             key="mypost"
             sastra={false}

@@ -45,7 +45,6 @@ export default function PenangananSensor() {
             <div className=" flex flex-row justify-end gap-12">
               <Button
                 onClick={() => {
-                  console.log(article.id);
                   updateLolosSensor(article.id);
                   router.push('/')}}
               >

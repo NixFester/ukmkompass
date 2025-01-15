@@ -16,6 +16,9 @@ cloudinary.config({
 async function handleUpload(file: string) {
   const res = await cloudinary.uploader.upload(file, {
     resource_type: 'auto',
+    quality: 'auto:best',  // Use the best quality optimization
+    fetch_format: 'auto',  // Fetch image in the best format (e.g., WebP)
+    crop: 'limit',  // Limit the image size but preserve its aspect ratio
   });
   return res;
 }

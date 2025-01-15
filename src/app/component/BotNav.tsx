@@ -1,4 +1,5 @@
-import * as React from "react";
+'use client'
+import { useContext } from "react";
 import Link from "next/link";
 import { AuthContext } from "../context/AuthContext";
 import { GrArticle, GrHome  } from "react-icons/gr";
@@ -6,7 +7,7 @@ import { MdMenuBook,MdLogin } from "react-icons/md";
 import { ImPen } from "react-icons/im";
 
 export default function BotNav() {
-  const authContext = React.useContext(AuthContext);
+  const authContext = useContext(AuthContext);
   if (!authContext) {
     throw new Error("Profile must be used within AuthProvider");
   }

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 export interface IUserAvatarProps {
   name: string;
@@ -18,11 +19,11 @@ export default function UserAvatar(props: IUserAvatarProps) {
         }
       >
         <div className="relative w-32 h-32 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-          <img
-            src={props.profpic}
-            alt="gambar"
-            className="absolute w-32 h-32 text-gray-400 "
-          />
+          {props.profpic && <Image src={`/api/proxy-image?imageUrl=${encodeURIComponent(props.profpic)}`}
+                                          alt="gambar"
+                                          className="absolute w-32 h-32 text-gray-400 "
+                                          height={96}
+                                          width={96} />}
         </div>
         <div className="ml-5 flex lg:flex-row flex-col gap-5">
           <div className=" lg:w-3/6">

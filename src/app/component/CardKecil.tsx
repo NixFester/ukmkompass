@@ -1,18 +1,22 @@
-import React, { useContext } from "react";
-import { ArticleContext } from "../context/ArticleContext";
 
-
-export default function CardKecil() {
-  const articleContext = useContext(ArticleContext);
-  if (!articleContext) {
-    throw new Error("Article must be used within AuthProvider");
+const fetchIsiBlog = async (): Promise<IIsiBlog[]> => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/isiblog`, {
+    next: { revalidate: Number(process.env.REVTIME) }, // Revalidate every 60 seconds
+  });
+  if (!res.ok) {
+    throw new Error("Failed to fetch articles");
   }
-  const { isiBlog } = articleContext;
+  const data: IIsiBlog[] = await res.json();
+  return data.sort((a, b) => Number(b.id) - Number(a.id)).filter(
+    (item: ISastra | IArticle) => item.lolosSensor
+  );
+}
 
+
+export default async function CardKecil() {
+  const isiBlog:IIsiBlog[] = await fetchIsiBlog()
   return (
     <div>
-      {/* component */}
-      {/* component */}
       <div className=" lg:ml-2 lg:w-fit">
         {isiBlog &&
           isiBlog.slice(0, 3).map((artikel) => (

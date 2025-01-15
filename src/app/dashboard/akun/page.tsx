@@ -3,7 +3,7 @@ import React from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Button } from "flowbite-react";
 import { saveDesc, saveName } from "../../api/userApi";
-
+import Image from "next/image";
 
 export default function AkunLayout() {
   const authContext = React.useContext(AuthContext);
@@ -51,11 +51,11 @@ export default function AkunLayout() {
                   {/* Profile Information */}
                   {profile && (
                     <div className="text-center lg:mt-4">
-                      <img
-                        className="w-24 h-24 rounded-full mx-auto"
-                        src={profile.profpic}
-                        alt={profile.name}
-                      />
+                      {<Image src={`/api/proxy-image?imageUrl=${encodeURIComponent(profile.profpic)}`}
+                                                      alt="gambar"
+                                                      className="absolute w-32 h-32 text-gray-400 "
+                                                      height={96}
+                                                      width={96} />}
                       <p className="text-sm text-gray-600 my-4">
                         {" "}
                         Email: {profile.email}

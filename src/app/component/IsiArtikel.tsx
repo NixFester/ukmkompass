@@ -8,6 +8,7 @@ import Komentar from "./Komentar";
 import KomentarAvatar from "./KomentarAvatar";
 import "react-quill-new/dist/quill.snow.css";
 import dynamic from "next/dynamic";
+import Image from "next/image";
 
 export interface IIsiArtikelProps {
   id: string;
@@ -32,7 +33,7 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
   return (
     <div className=" w-full lg:p-16 p-2 flex justify-center flex-col">
       <Line />
-      {<img src={targetArticle?.image} alt="" className=" mt-10" />}
+      {targetArticle.image && <Image src={targetArticle.image} alt="" className=" mt-10"  width={1200} height={1200} />}
       <h1 className=" lg:text-8xl text-5xl font-bold my-8">
         {targetArticle?.title}
       </h1>
@@ -71,13 +72,7 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
         ))}
       </div>
       <div className=" ml-10">
-        <div>
-          <p className="  mt-2 text-slate-800 text-4xl font-semibold mb-3 w-2/4">
-            Terbaru
-          </p>
-          <Line kelas=" h-2 sm:w-[200px]" />
-          <CardKecil />
-        </div>
+       
       </div>
     </div>
   );

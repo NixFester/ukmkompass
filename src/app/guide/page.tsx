@@ -157,7 +157,11 @@ export default function Page() {
                                     Artikel Anda akan diperiksa oleh tim UKM KomPaSS. Setelah disetujui, artikel akan tampil di halaman utama.
                                 </p>
                                 </section>
-                                <div
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+                    <div
                         className={
                         " w-fit my-5 mx-auto bg-white p-8 mt-5 flex lg:flex-row flex-col justify-center shadow-sm border border-slate-200 hover:border-slate-300 hover:shadow-md rounded-lg transition-all "
                         }
@@ -178,12 +182,6 @@ export default function Page() {
                         <p className=" text-2xl">Pembuat Website</p>
                         </div>
                     </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    </div>
-                    
                     <Kaki />
                     <BotNav />
                 </div>

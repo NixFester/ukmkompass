@@ -5,6 +5,7 @@ import axios from "axios";
 import { AuthContext } from "../context/AuthContext";
 import { useRouter } from "next/navigation";
 import { Button } from "flowbite-react";
+import Image from "next/image";
 
 const Auth: React.FC = () => {
     const router = useRouter();
@@ -58,11 +59,11 @@ const Auth: React.FC = () => {
                 {/* Google Login Section */}
                 {profile && (
                   <div className="text-center mt-4">
-                    {profile.profpic && <img
-                      className="w-24 h-24 rounded-full mx-auto"
-                      src={profile.profpic}
-                      alt={profile.name}
-                    />}
+                    {profile.profpic && <Image src={`/api/proxy-image?imageUrl=${encodeURIComponent(profile?profile?.profpic:"")}`}
+                                alt="gambar"
+                                className="absolute w-32 h-32 text-gray-400 "
+                                height={96}
+                                width={96} />}
                     <p className="mt-2 text-2xl font-semibold">
                       {profile.name}
                     </p>

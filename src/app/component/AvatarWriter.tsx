@@ -4,6 +4,7 @@ import {
   getUserBasedOnArticle,
   getUserBasedOnSastraId,
 } from "../api/userApi";
+import Image from "next/image";
 
 export interface IAvatarWriterProps {
   id: string;
@@ -34,12 +35,12 @@ export function AvatarWriter(props: IAvatarWriterProps) {
         " w-fit my-5 mx-auto bg-white p-8 mt-5 flex lg:flex-row flex-col justify-center shadow-sm border border-slate-200 hover:border-slate-300 hover:shadow-md rounded-lg transition-all "
       }
     >
-      <div className="lg:relative w-20 h-20 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-        {user && <img
-          src={user.profpic}
-          alt="gambar"
-          className="lg:absolute w-20 h-20 text-gray-400 "
-        />}
+      <div className="lg:relative w-[96px] h-[96px] overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+        {user && <Image src={`/api/proxy-image?imageUrl=${encodeURIComponent(user.profpic)}`}
+                                        alt="gambar"
+                                        className="absolute w-[96px] h-[96px] text-gray-400 "
+                                        height={96}
+                                        width={96} />}
       </div>
       <div className=" lg:max-w-96 mt-4 lg:mt-0 lg:ml-5">
         <p>

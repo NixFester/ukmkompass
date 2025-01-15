@@ -1,4 +1,3 @@
-'use client'
 import Header from "../Header";
 import Line from "../Line";
 import CardKecil from "../CardKecil";
@@ -7,10 +6,12 @@ import BotNav from "../BotNav";
 import { UserAvatar } from "../UserAvatat";
 import ListArtikel from "../ListArtikel";
 import SearchBox from "../SearchComponent";
+import Image from "next/image";
 
 export interface IMainLayoutProps {
   Kategori: 1 | 2 | 3 | 4;
   query?: string;
+  isiBlog?: IIsiBlog[]
 }
 
 export default function MainLayout(props: IMainLayoutProps) {
@@ -28,7 +29,7 @@ export default function MainLayout(props: IMainLayoutProps) {
       <div className=" flex justify-center">
         <div className=" w-11/12 mx-2">
           <Header type={tipe} />
-          <img src={'/KomPaSSPancasaktiHD.png'} alt="tulisan" className=" w-full my-2"  width={0} height={0}/>
+          <Image className=" w-full my-2" src={'/KomPaSSPancasaktiHD.png'} alt="tulisan" width={6080} height={864} />
           <Line />
           <div className=" flex lg:flex-row flex-col">
             <div className=" block lg:hidden">
@@ -38,7 +39,10 @@ export default function MainLayout(props: IMainLayoutProps) {
               <Line kelas=" h-2 sm:w-[200px]" />
               <SearchBox />
             </div>
-            <ListArtikel Kategori={props.Kategori} searchQuery={props.query} />
+            <ListArtikel Kategori={props.Kategori} searchQuery={props.query} 
+            isiBlog={props.isiBlog && props.isiBlog.filter(
+              (item: ISastra | IArticle) => item.lolosSensor
+            ) } />
             <div className=" lg:w-[29%] lg:ml-10">
               <UserAvatar />
               
@@ -53,7 +57,10 @@ export default function MainLayout(props: IMainLayoutProps) {
                 Terbaru
               </p>
               <Line kelas=" h-2 sm:w-[200px]" />
-              <CardKecil />
+              <CardKecil
+              isiBlog={props.isiBlog && props.isiBlog.filter(
+                (item: ISastra | IArticle) => item.lolosSensor
+              ) }  />
             </div>
           </div>
         </div>

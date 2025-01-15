@@ -6,6 +6,7 @@ import "react-quill-new/dist/quill.snow.css";
 import { Button,Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { hapusArtikel } from "../api/userApi";
+import Image from "next/image";
 
 export interface IIsiWriterProps {
   bentuk: string;
@@ -187,11 +188,11 @@ export default function IsiWriter(props: IIsiWriterProps) {
           loading={props.loading}
         />}
         {props.imageUrl && (
-          <img
-            src={props.imageUrl}
-            alt="Article"
-            className="mt-2 mb-4 w-full h-auto"
-          />
+          <Image src={`/api/proxy-image?imageUrl=${encodeURIComponent(props.imageUrl)}`}
+                                          alt="gambar"
+                                          className="absolute w-32 h-32 text-gray-400 "
+                                          height={96}
+                                          width={96} />
         )}
         <h2>Judul:</h2>
         <input

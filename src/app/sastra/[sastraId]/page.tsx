@@ -1,23 +1,25 @@
-'use client'
-import * as React from "react";
-import { ArticleContext } from "../../context/ArticleContext";
-import { useParams } from 'next/navigation';
 import BlogPostLayout from "@/app/component/layout/BlogPostLayout";
 
+export const revalidate = Number(process.env.REVTIME)
 
-export default function Sastra() {
-    const {sastraId} = useParams()
-     const id = Array.isArray(sastraId)
-       ? sastraId[0] // Extract the first element
-       : sastraId;
-  const articleContext = React.useContext(ArticleContext);
-  if (!articleContext) {
-    throw new Error("Article must be used within AuthProvider");
+const fetchIsiBlog = async (id:string): Promise<any> => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_SITE_URL}/api/isiblog/${id}`);
+  const data:IIsiBlog = await res.json();
+  return data
+}
+
+export default async function Artikel({
+  params,
+}: {
+  params: Promise<{ artikelId: string }>
+}) {
+  const slug = (await params).artikelId
+  if (slug) {
+    const isiBlog:IIsiBlog = await fetchIsiBlog(slug);
+    return (
+      <BlogPostLayout targetArticle={isiBlog} id={slug} jenis="Sastra"/>
+    );
   }
-  const { isiBlog } = articleContext;
-
-  const targetArticle = isiBlog.find((x) => x.id === id);
-  return (
-    <BlogPostLayout targetArticle={targetArticle} id={id} jenis="Sastra"/>
-  );
+  return <p>loading</p>
+  
 }

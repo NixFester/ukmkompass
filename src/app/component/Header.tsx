@@ -1,18 +1,13 @@
-import * as React from "react";
 import Judul from "./bagianHeader/Judul";
 import ListMenu from "./bagianHeader/ListMenu";
-import { AuthContext } from "../context/AuthContext";
+import HeaderChoice from "./HeaderChoices";
 
 export interface IHeaderProps {
   type: "beranda" | "artikel" | "pojokSastra" | "akun" | "sesuatu";
 }
 
 export default function Header(props: IHeaderProps) {
-  const authContext = React.useContext(AuthContext);
-  if (!authContext) {
-    throw new Error("Profile must be used within AuthProvider");
-  }
-  const { profile } = authContext;
+
   return (
     <nav className=" bg-rose-500 border border-gray-200 px-2 pt-2 rounded shadow ">
       <div className="container flex flex-wrap justify-between items-center mx-auto">
@@ -34,11 +29,7 @@ export default function Header(props: IHeaderProps) {
               teks={"Pojok Sastra"}
               href="/sastra"
             />
-            <ListMenu
-              type={props.type === "akun"}
-              teks={profile ? "Akun" : "Log In"}
-              href={profile ? "/dashboard/akun" : "/auth"}
-            />
+            <HeaderChoice />
           </ul>
         </div>
       </div>

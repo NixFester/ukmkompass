@@ -1,9 +1,11 @@
-import * as React from "react";
+'use client'
+import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
+import Image from "next/image";
 
 
 export function UserAvatar() {
-  const authContext = React.useContext(AuthContext);
+  const authContext = useContext(AuthContext);
   if (!authContext) {
     throw new Error("Profile must be used within AuthProvider");
   }
@@ -18,11 +20,11 @@ export function UserAvatar() {
         }
       >
         <div className="relative w-32 h-32 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
-          <img
-            src={profile?.profpic}
+          <Image src={`/api/proxy-image?imageUrl=${encodeURIComponent(profile?profile?.profpic:"")}`}
             alt="gambar"
             className="absolute w-32 h-32 text-gray-400 "
-          />
+            height={96}
+            width={96} />
         </div>
         <div className="ml-5 text-3xl flex justify-center flex-col">
           <p>Selamat Datang!</p>

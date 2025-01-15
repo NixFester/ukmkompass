@@ -83,12 +83,10 @@ export const tambahKomentar = async (
   isiKomentar: komentarTemplate,
   sastra: boolean
 ): Promise<any> => {
-  console.log( idArtikel);
   const url = `${BASE_URL}/users/${sastra ? "sastra" : "article"}/${idArtikel}/comment`;
 
   try {
     const { data } = await axios.post(url, { ...isiKomentar });
-    console.log(data);
     return data;
   } catch (err) {
     console.error("Error adding comment:", err);
@@ -105,7 +103,6 @@ export const hapusKomentar = async (
   const url = `${BASE_URL}/users/${idPenulis}/${sastra ? "sastra" : "article"}/${idArtikel}/comment/${idKomentar}`;
   try {
     const { data } = await axios.delete(url);
-    console.log(data);
     return data;
   } catch (err) {
     console.error("Error deleting comment:", err);
