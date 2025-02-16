@@ -6,6 +6,7 @@ import { Button, Modal } from "flowbite-react";
 import { HiOutlineExclamationCircle } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+import "../../tootltip.css"
 
 
 export default function PenangananSensor() {
@@ -36,11 +37,13 @@ export default function PenangananSensor() {
                 className="mt-2 mb-4 w-full h-auto"
               />
             )}
+            <div>
             <ReactQuill
             readOnly={true}
             value={article.body}
             theme="bubble"
             />
+            </div>
           
             <div className=" flex flex-row justify-end gap-12">
               <Button
@@ -70,7 +73,7 @@ export default function PenangananSensor() {
                   <div className="flex justify-center gap-4">
                     <Button
                       onClick={async () => {
-                        hapusArtikel(article.id);
+                        await hapusArtikel(article.id);
                         router.refresh();
                       }}
                     >

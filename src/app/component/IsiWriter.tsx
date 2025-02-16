@@ -1,5 +1,6 @@
 'use client'
-import React,{ useMemo, useState } from "react";
+import React,{ useMemo, useState,useEffect } from "react";
+import { useRouter } from "next/navigation";
 import ImageUploader from "./ImageUploader";
 import dynamic from "next/dynamic";
 import "react-quill-new/dist/quill.snow.css";
@@ -30,8 +31,19 @@ export interface IIsiWriterProps {
 
 export default function IsiWriter(props: IIsiWriterProps) {
   const ReactQuill = useMemo(() => dynamic(() => import('react-quill-new'), { ssr: false }),[]);
+
+  const router = useRouter()
   const [editArticle,setEditState] = useState(true)
   const [openModal,setOpenModal] = useState(false)
+
+  useEffect(() => {
+    const tooltips = document.querySelectorAll(".ql-tooltip");
+    tooltips.forEach((tooltip) => {
+      if (tooltip instanceof HTMLElement) {
+        tooltip.style.display = editArticle ? "none" : "block";
+      }
+    });
+  }, [editArticle]);
 
   const render =
     props.bentuk === "artikel"
@@ -140,7 +152,7 @@ export default function IsiWriter(props: IIsiWriterProps) {
                     Edit Artikel
                   </Button>
                   <Button onClick={() => setOpenModal(true)}>
-                    Tidak Lulus Sensor
+                    Hapus Artikel
                   </Button>
                 </div>
                 <Modal
@@ -159,7 +171,8 @@ export default function IsiWriter(props: IIsiWriterProps) {
                       <div className="flex justify-center gap-4">
                         <Button
                           onClick={async () => {
-                            hapusArtikel(article.id);
+                            await hapusArtikel(article.id);
+                            router.refresh();
                           }}
                         >
                           Ya! Tentu

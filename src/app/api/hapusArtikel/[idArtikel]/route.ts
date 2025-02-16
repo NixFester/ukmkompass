@@ -1,5 +1,18 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { connectToDatabase } from '../../../../lib/mongodb';
+import { v2 } from 'cloudinary';
+
+import { config } from 'dotenv';
+
+// Configure environment variables
+config();
+
+// Configure Cloudinary
+v2.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.API_KEY,
+  api_secret: process.env.API_SECRET,
+});
 
 export async function DELETE(req: NextRequest, { params }: { params: Promise<{ idArtikel: string }> }) {
   const { idArtikel } = await params;
@@ -21,6 +34,8 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
       if (sastraIndex === -1) {
         return NextResponse.json({ message: "sastra not found" }, { status: 404 });
       }
+      const ImagePublicId = user.sastra[sastraIndex].image.split("/").pop().split(".")[0]
+      v2.uploader.destroy(ImagePublicId).then(result=>console.log(result));
       user.sastra.splice(sastraIndex, 1);
       await collection.updateOne(
         { id: user.id },
@@ -32,6 +47,8 @@ export async function DELETE(req: NextRequest, { params }: { params: Promise<{ i
       if (artikelIndex === -1) {
         return NextResponse.json({ message: "artikel not found" }, { status: 404 });
       }
+      const ImagePublicId = user.article[artikelIndex].image.split("/").pop().split(".")[0]
+      v2.uploader.destroy(ImagePublicId).then(result=>console.log(result));
       user.article.splice(artikelIndex, 1);
       await collection.updateOne(
         { id: user.id },

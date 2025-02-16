@@ -40,22 +40,22 @@ export default function AkunLayout() {
           <div className="relative px-2 py-2 bg-white shadow-lg sm:rounded-3xl sm:p-20">
             <div className=" mx-auto">
               <div className="flex flex-col items-center">
+                <h1 className="text-2xl font-semibold">Selamat Datang,</h1>
                 <h1 className="text-2xl font-semibold">
-                  {profile
-                    ? `Selamat Datang, ${profile.name}`
-                    : "Login with Google or Email"}
+                  {profile && profile.name}
                 </h1>
               </div>
               <div className="divide-y divide-gray-200">
-                <div className="py-8 text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
+                <div className=" text-base leading-6 space-y-4 text-gray-700 sm:text-lg sm:leading-7">
                   {/* Profile Information */}
                   {profile && (
                     <div className="text-center lg:mt-4">
-                      {<Image src={`/api/proxy-image?imageUrl=${encodeURIComponent(profile.profpic)}`}
-                                                      alt="gambar"
-                                                      className="absolute w-32 h-32 text-gray-400 "
-                                                      height={96}
-                                                      width={96} />}
+                      <div className="flex justify-center">
+                        {<Image src={`/api/proxy-image?imageUrl=${encodeURIComponent(profile.profpic)}`}
+                                                        alt="gambar"
+                                                        height={128}
+                                                        width={128} />}
+                      </div>
                       <p className="text-sm text-gray-600 my-4">
                         {" "}
                         Email: {profile.email}
