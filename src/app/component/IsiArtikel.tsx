@@ -37,7 +37,6 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
     return <div>invalid</div>
   }
 
-  const router = useRouter()
   const [likeBlogState,setLikeState] = useState(targetArticle.like || 0)
   const [uniqueReactionState, setUniqueReaction] = useState(Boolean)
 
@@ -45,7 +44,7 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
     if(profile){
       setUniqueReaction(isUnique(targetArticle.id,profile.interaksi? profile.interaksi : []))
     }
-  },[profile?.interaksi])
+  },[])
 
   return (
     <div className=" w-full lg:p-16 p-2 flex justify-center flex-col">
