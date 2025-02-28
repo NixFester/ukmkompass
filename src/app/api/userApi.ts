@@ -189,3 +189,114 @@ export const hapusArtikel = async (artikelId: string): Promise<void> => {
     throw err;
   }
 };
+
+export const reaksi = async (userId:string,artikelId:string): Promise<boolean> =>{
+  const url = `${BASE_URL}/user/${userId}/reaction/${artikelId}`
+  try {
+    const {data} = await axios.post(url)
+    console.log ("reaction saved: ", data)
+    return true
+  } catch (err) {
+    console.error("Error ", err)
+    return false
+  }
+}
+
+export const hapusReaksi = async (userId:string,artikelId:string): Promise<boolean> =>{
+  const url = `${BASE_URL}/user/${userId}/reaction/${artikelId}/delete`
+  try {
+    const {data} = await axios.delete(url)
+    console.log ("reaction deleted: ", data)
+    return true;
+  } catch (err) {
+    console.error("Error ", err)
+    return false
+  }
+}
+
+export const likeArtikel = async (artikelId:string): Promise<void> =>{
+  const url = `${BASE_URL}/article/${artikelId}/like`
+  try {
+    const {data} = await axios.post(url)
+    console.log ("reaction saved: ", data)
+  } catch (err) {
+    console.error("Error ", err)
+    throw err
+  }
+}
+
+export const likeSastra = async (artikelId:string): Promise<void> =>{
+  const url = `${BASE_URL}/article/${artikelId}/like/sastra`
+  try {
+    const {data} = await axios.post(url)
+    console.log ("reaction saved: ", data)
+  } catch (err) {
+    console.error("Error ", err)
+    throw err
+  }
+}
+
+export const dislikeArtikel = async (artikelId:string): Promise<void> =>{
+  const url = `${BASE_URL}/article/${artikelId}/dislike`
+  try {
+    const {data} = await axios.post(url)
+    console.log ("reaction saved: ", data)
+  } catch (err) {
+    console.error("Error ", err)
+    throw err
+  }
+}
+
+export const dislikeSastra = async (artikelId:string): Promise<void> =>{
+  const url = `${BASE_URL}/article/${artikelId}/dislike/sastra`
+  try {
+    const {data} = await axios.post(url)
+    console.log ("reaction saved: ", data)
+  } catch (err) {
+    console.error("Error ", err)
+    throw err
+  }
+}
+export const unlikeArtikel = async (artikelId:string): Promise<void> =>{
+  const url = `${BASE_URL}/article/${artikelId}/like/unlike`
+  try {
+    const {data} = await axios.post(url)
+    console.log ("reaction saved: ", data)
+  } catch (err) {
+    console.error("Error ", err)
+    throw err
+  }
+}
+
+export const unlikeSastra = async (artikelId:string): Promise<void> =>{
+  const url = `${BASE_URL}/article/${artikelId}/like/unlike/sastra`
+  try {
+    const {data} = await axios.post(url)
+    console.log ("reaction saved: ", data)
+  } catch (err) {
+    console.error("Error ", err)
+    throw err
+  }
+}
+
+export const undislikeArtikel = async (artikelId:string): Promise<void> =>{
+  const url = `${BASE_URL}/article/${artikelId}/dislike/undislike`
+  try {
+    const {data} = await axios.post(url)
+    console.log ("reaction saved: ", data)
+  } catch (err) {
+    console.error("Error ", err)
+    throw err
+  }
+}
+
+export const undislikeSastra = async (artikelId:string): Promise<void> =>{
+  const url = `${BASE_URL}/article/${artikelId}/dislike/undislike/sastra`
+  try {
+    const {data} = await axios.post(url)
+    console.log ("reaction saved: ", data)
+  } catch (err) {
+    console.error("Error ", err)
+    throw err
+  }
+}

@@ -1,5 +1,5 @@
 'use client'
-import React, { useContext, useMemo } from "react";
+import React, { useContext, useEffect, useMemo,useState } from "react";
 import Line from "./Line";
 import { AvatarWriter } from "./AvatarWriter";
 import CardKecil from "./CardKecil";
@@ -9,6 +9,9 @@ import KomentarAvatar from "./KomentarAvatar";
 import "react-quill-new/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { AiOutlineLike,AiFillLike} from "react-icons/ai";
+import {reaksi, hapusReaksi, likeArtikel, unlikeArtikel, likeSastra,unlikeSastra , dislikeArtikel, undislikeArtikel, dislikeSastra, undislikeSastra} from '../api/userApi'
+import { useRouter } from "next/navigation";
 
 export interface IIsiArtikelProps {
   id: string;
@@ -16,12 +19,17 @@ export interface IIsiArtikelProps {
   sastra: boolean;
 }
 
+function isUnique(str: string, arr: string[]): boolean {
+  return !arr.includes(str);
+}
+
+
 export default function IsiArtikel(props: IIsiArtikelProps) {
   const authContext = useContext(AuthContext);
   if (!authContext) {
     throw new Error("Article must be used within AuthProvider");
   }
-  const { profile } = authContext;
+  const { profile,addProfileReactionState, removeProfileReactionState } = authContext;
   const targetArticle = props.isi;
   
   const ReactQuill = useMemo(() => dynamic(() => import('react-quill-new'), { ssr: false }),[]);
@@ -29,6 +37,15 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
     return <div>invalid</div>
   }
 
+  const router = useRouter()
+  const [likeBlogState,setLikeState] = useState(targetArticle.like || 0)
+  const [uniqueReactionState, setUniqueReaction] = useState(Boolean)
+
+  useEffect(()=>{
+    if(profile){
+      setUniqueReaction(isUnique(targetArticle.id,profile.interaksi? profile.interaksi : []))
+    }
+  },[profile?.interaksi])
 
   return (
     <div className=" w-full lg:p-16 p-2 flex justify-center flex-col">
@@ -47,12 +64,42 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
           />
         </div>
 
+        <div className="self-end flex mb-10 gap-2">
+          <div className=" cursor-pointer" onClick={async ()=>{
+            if (profile) {
+              if (uniqueReactionState){
+                if (await reaksi(profile.id,targetArticle.id)) {
+                  props.sastra? likeSastra(targetArticle.id): likeArtikel(targetArticle.id)
+                  setLikeState((prev)=> prev+1)
+                  setUniqueReaction((prev)=>!prev)
+                  addProfileReactionState(targetArticle.id)
+                }
+              } else {
+                if ( await hapusReaksi(profile.id,targetArticle.id)) {
+                  props.sastra? unlikeSastra(targetArticle.id): unlikeArtikel(targetArticle.id)
+                  setLikeState((prev)=> prev-1)
+                  setUniqueReaction((prev)=>!prev)
+                  removeProfileReactionState(targetArticle.id)
+                }
+              }
+            }
+          }}>
+            {uniqueReactionState?
+            <AiOutlineLike size={62}/>: <AiFillLike size={62}/>
+            }
+          </div>
+          <p className=" text-6xl">{likeBlogState}</p>
+          
+        </div>
+
         <div className=" self-start">
           <AvatarWriter
             sastra={props.sastra}
             id={targetArticle ? targetArticle.id : ""}
           />
         </div>
+
+        
 
         {profile && <Komentar
           sastra={props.sastra}
@@ -61,7 +108,7 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
           profpic={profile ? profile.profpic : ""}
           name={profile ? profile.name : ""}
         />}
-        {targetArticle?.komentar.map((comment) => (
+        {targetArticle && targetArticle.komentar.map((comment) => (
           <KomentarAvatar
             key={comment.idKomentar}
             name={comment.userName}

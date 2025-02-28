@@ -50,12 +50,7 @@ interface KATEGORIENUM {
     dislike?: number;
     lolosSensor?: boolean;
   }
-  
-  interface interaksi {
-    userId: string;
-    //reaksi like true, dislike false
-    reaksi: boolean;
-  }
+
   
   interface UserProfile {
     id: string;
@@ -65,7 +60,7 @@ interface KATEGORIENUM {
     description?: string;
     article?: IArticle[];
     sastra?: ISastra[];
-    interaksi?: interaksi[];
+    interaksi?: string[];
   }
   interface ArticleContext {
     articles: IArticle[];
