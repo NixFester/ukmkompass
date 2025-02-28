@@ -40,11 +40,38 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
     if(profile){
       setUniqueReaction(isUnique(targetArticle.id,profile.interaksi? profile.interaksi : []))
     }
-  },[])
+  },[profile, targetArticle.id])
 
   const ReactQuill = useMemo(() => dynamic(() => import('react-quill-new'), { ssr: false }),[]);
   if (!props.id) {
     return <div>invalid</div>
+  }
+  const handleReaction = async () => {
+    if (profile) {
+      if (uniqueReactionState) {
+        if (await reaksi(profile.id, targetArticle.id)) {
+          if (props.sastra) {
+            await likeSastra(targetArticle.id); // ✅ Explicit function call
+          } else {
+            await likeArtikel(targetArticle.id);
+          }
+          setLikeState((prev) => prev + 1);
+          setUniqueReaction(false);
+          addProfileReactionState(targetArticle.id);
+        }
+      } else {
+        if (await hapusReaksi(profile.id, targetArticle.id)) {
+          if (props.sastra) {
+            await unlikeSastra(targetArticle.id); // ✅ Explicit function call
+          } else {
+            await unlikeArtikel(targetArticle.id);
+          }
+          setLikeState((prev) => prev - 1);
+          setUniqueReaction(true);
+          removeProfileReactionState(targetArticle.id);
+        }
+      }
+    }
   }
 
 
@@ -66,25 +93,7 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
         </div>
 
         <div className="self-end flex mb-10 gap-2">
-          <div className=" cursor-pointer" onClick={async ()=>{
-            if (profile) {
-              if (uniqueReactionState){
-                if (await reaksi(profile.id,targetArticle.id)) {
-                  props.sastra? likeSastra(targetArticle.id): likeArtikel(targetArticle.id)
-                  setLikeState((prev)=> prev+1)
-                  setUniqueReaction((prev)=>!prev)
-                  addProfileReactionState(targetArticle.id)
-                }
-              } else {
-                if ( await hapusReaksi(profile.id,targetArticle.id)) {
-                  props.sastra? unlikeSastra(targetArticle.id): unlikeArtikel(targetArticle.id)
-                  setLikeState((prev)=> prev-1)
-                  setUniqueReaction((prev)=>!prev)
-                  removeProfileReactionState(targetArticle.id)
-                }
-              }
-            }
-          }}>
+          <div className=" cursor-pointer" onClick={handleReaction}>
             {uniqueReactionState?
             <AiOutlineLike size={62}/>: <AiFillLike size={62}/>
             }
