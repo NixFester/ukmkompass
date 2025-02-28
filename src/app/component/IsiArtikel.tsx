@@ -32,11 +32,7 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
   const { profile,addProfileReactionState, removeProfileReactionState } = authContext;
   const targetArticle = props.isi;
   
-  const ReactQuill = useMemo(() => dynamic(() => import('react-quill-new'), { ssr: false }),[]);
-  if (!props.id) {
-    return <div>invalid</div>
-  }
-
+  
   const [likeBlogState,setLikeState] = useState(targetArticle.like || 0)
   const [uniqueReactionState, setUniqueReaction] = useState(Boolean)
 
@@ -45,6 +41,12 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
       setUniqueReaction(isUnique(targetArticle.id,profile.interaksi? profile.interaksi : []))
     }
   },[])
+
+  const ReactQuill = useMemo(() => dynamic(() => import('react-quill-new'), { ssr: false }),[]);
+  if (!props.id) {
+    return <div>invalid</div>
+  }
+
 
   return (
     <div className=" w-full lg:p-16 p-2 flex justify-center flex-col">
