@@ -92,15 +92,22 @@ export default function IsiArtikel(props: IIsiArtikelProps) {
           />
         </div>
 
-        <div className="self-end flex mb-10 gap-2">
-          <div className=" cursor-pointer" onClick={handleReaction}>
+        {profile?<div className="self-start mb-10 -mt-10 ml-3 border-4 border-red-400 rounded-lg ">
+          <div className=" flex gap-2 cursor-pointer" onClick={handleReaction
+          }>
             {uniqueReactionState?
-            <AiOutlineLike size={62}/>: <AiFillLike size={62}/>
+            <AiOutlineLike className=" text-3xl lg:text-6xl" />: <AiFillLike className=" text-3xl lg:text-6xl" />
             }
+            <p className="  text-3xl md:text-6xl">{likeBlogState}</p>
           </div>
-          <p className=" text-6xl">{likeBlogState}</p>
-          
-        </div>
+        </div>:
+         <div className="self-start mb-10 -mt-10 ml-3 border-4 border-red-400 rounded-lg ">
+         <div className=" flex gap-2" >
+           <AiFillLike className=" text-3xl lg:text-6xl" />
+           <p className="  text-3xl md:text-6xl">{likeBlogState}</p>
+         </div>
+       </div>
+        }
 
         <div className=" self-start">
           <AvatarWriter

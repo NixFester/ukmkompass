@@ -29,7 +29,7 @@ export default function MainLayout(props: IMainLayoutProps) {
       <div className=" flex justify-center">
         <div className=" w-11/12 mx-2">
           <Header type={tipe} />
-          <Image className=" w-full my-2" src={props.Kategori===1?'/Kompass Pancasakti.png':props.Kategori===2?'/Artikel Kompass.png':props.Kategori===3?'/Pojok Sastra.png':'/Kompass Pancasakti.pn'} alt="tulisan" width={6080} height={864} />
+          <Image className=" w-full my-2" src={props.Kategori===1?'/Kompass Pancasakti.png':props.Kategori===2?'/Artikel Kompass.png':props.Kategori===3?'/Pojok Sastra.png':'/Kompass Pancasakti.png'} alt="tulisan" width={6080} height={864} />
           <Line />
           <div className=" flex lg:flex-row flex-col">
             <div className=" block lg:hidden">
@@ -53,10 +53,7 @@ export default function MainLayout(props: IMainLayoutProps) {
                 <Line kelas=" h-2 sm:w-[200px]" />
                 <SearchBox />
               </div>
-              <p className="  mt-2 text-slate-800 text-4xl font-semibold mb-3">
-                Terbaru
-              </p>
-              <Line kelas=" h-2 sm:w-[200px]" />
+              
               
             </div>
           </div>
