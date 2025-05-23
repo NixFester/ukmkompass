@@ -16,15 +16,6 @@ export async function GET(req: NextRequest,
         .find((x) => {
             return x.id === id; // Explicit return
           })
-    if (!article) {
-        const sastra = users
-        .flatMap((user) => user.article || [])
-        .find((x) => {
-            return x.id === id; // Explicit return
-          });
-        return NextResponse.json(sastra, { status: 200 });
-    }
-
     return NextResponse.json(article, { status: 200 });
     } catch (error) {
     console.error("Error fetching blog content:", error);
