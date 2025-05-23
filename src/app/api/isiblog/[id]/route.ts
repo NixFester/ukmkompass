@@ -18,7 +18,7 @@ export async function GET(req: NextRequest,
           });
     if (!article) {
         const sastra = users
-        .flatMap((user) => user.article || [])
+        .flatMap((user) => user.sastra || [])
         .find((x) => {
             return x.id === id; // Explicit return
           });
