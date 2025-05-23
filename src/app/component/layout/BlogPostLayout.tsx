@@ -5,13 +5,14 @@ import IsiArtikel from "../IsiArtikel";
 import BotNav from "../BotNav";
 import BackButton from "../BackButton";
 interface BlogPostLayoutProps {
-    targetArticle: IIsiBlog | undefined;
+    targetArticle: IIsiBlog[];
     id: string | undefined;
     jenis:string
 }
 
 
 export default function BlogPostLayout({ targetArticle, id,jenis }: BlogPostLayoutProps) {
+    const targetnya = targetArticle.find(obj=>obj.id === id)
     return (
     <div>
             <div className=" flex justify-center">
@@ -23,11 +24,11 @@ export default function BlogPostLayout({ targetArticle, id,jenis }: BlogPostLayo
                     <b>{jenis}</b>
                 </span>
                 </div>
-                {targetArticle && id && (
+                {targetnya && id && (
                 <IsiArtikel
                     sastra={jenis === "Sastra"}
                     id={ id}
-                    isi={targetArticle}
+                    isi={targetnya}
                 />
                 )}
             </div>
