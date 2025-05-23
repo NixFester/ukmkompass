@@ -14,9 +14,9 @@ const fetchIsiBlog = async (): Promise<any> => {
 export default async function Artikel({
   params,
 }: {
-  params: Promise<{ artikelId: string }>
+  params: Promise<{ sastraId: string }>
 }) {
-  const slug = (await params).artikelId
+  const slug = (await params).sastraId
   if (slug) {
     const isiBlog = await fetchIsiBlog();
     return (
